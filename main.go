@@ -1,10 +1,17 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"os"
 	"path/filepath"
 )
+
+type Param struct {
+	database string
+}
+
+var param Param
 
 type TagFieldKey struct {
 	hostname string
@@ -18,6 +25,7 @@ func init() {
 	if len(os.Args) < 2 {
 		log.Fatal("No file name")
 	}
+	flag.StringVar(&param.database, "d", "perf", "Database to connect to the server.")
 }
 
 func main() {

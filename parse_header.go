@@ -3,17 +3,15 @@ package main
 import (
 	"fmt"
 	"regexp"
-	"strings"
 )
 
-var word = regexp.MustCompile(`[^\\#()]+`)      // "\","#","(",")"以外のすべての文字
-var nonWord = regexp.MustCompile(`[^\\#()\w]+`) // 上記から[a-zA-Z0-9_]を除いた文字
+var word = regexp.MustCompile(`[^\\#()]+`) // "\","#","(",")"以外のすべての文字
+var space = regexp.MustCompile(`\s+`)      // 上記から[a-zA-Z0-9_]を除いた文字
 
 func parseHeader(header string) (TagFieldKey, error) {
 	var keys TagFieldKey
 
-	header = strings.Replace(header, "%", `percent`, -1)
-	header = nonWord.ReplaceAllString(header, `_`)
+	header = space.ReplaceAllString(header, `_`)
 
 	xs := word.FindAllString(header, -1)
 	if len(xs) < 3 {

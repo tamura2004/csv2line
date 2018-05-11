@@ -7,7 +7,7 @@ import (
 
 func writeHeader(w io.Writer) {
 	fmt.Fprint(w, "# DDL\n")
-	fmt.Fprint(w, "CREATE DATABASE perf\n\n")
+	fmt.Fprintf(w, "CREATE DATABASE %s\n\n", param.database)
 	fmt.Fprint(w, "# DML\n")
-	fmt.Fprint(w, "# CONTEXT-DATABASE: perf\n\n")
+	fmt.Fprintf(w, "# CONTEXT-DATABASE: %s\n\n", param.database)
 }
