@@ -5,7 +5,7 @@ import (
 )
 
 func handleCSV(inFileName string) {
-	outFileName, err := createOutFile(inFileName)
+	outFileName, err := buildFilename(inFileName)
 	handleError(err)
 
 	// 出力ファイルをオープン

@@ -6,7 +6,7 @@ import (
 
 func writeRow(w io.Writer, keys []TagFieldKey, row []string) {
 
-	t := toTimestamp(row[0])
+	t := buildTimestamp(row[0])
 
 	// データを出力
 	for j, col := range row[1:] {

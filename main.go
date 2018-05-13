@@ -1,17 +1,13 @@
 package main
 
 import (
-	"flag"
-	"log"
-	"os"
+	// "log"
+	// "os"
 	"path/filepath"
+	"flag"
+	// "github.com/k0kubun/pp"
+	// "gopkg.in/alecthomas/kingpin.v2"
 )
-
-type Param struct {
-	database string
-}
-
-var param Param
 
 type TagFieldKey struct {
 	hostname string
@@ -21,16 +17,22 @@ type TagFieldKey struct {
 	label    string
 }
 
+var (
+	InFileName string
+	database string
+)
+
+
+
 func init() {
-	if len(os.Args) < 2 {
-		log.Fatal("No file name")
-	}
-	flag.StringVar(&param.database, "d", "perf", "Database to connect to the server.")
+	flag.StringVar(&InFileName, "in", "*.csv", "File name of input csv")
+	flag.StringVar(&database, "d", "perf", "Name of database to use")
+	flag.Parse()
 }
 
 func main() {
 	// パラメータをファイル名に展開
-	inFileNames, err := filepath.Glob(os.Args[1])
+	inFileNames, err := filepath.Glob(InFileName)
 	handleError(err)
 
 	for _, inFileName := range inFileNames {

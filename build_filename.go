@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func createOutFile(infile string) (string, error) {
+func buildFilename(infile string) (string, error) {
 	ext := filepath.Ext(infile)
 	if ext != ".csv" {
 		return "", fmt.Errorf("infile must be csv: %s", infile)
