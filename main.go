@@ -1,12 +1,8 @@
 package main
 
 import (
-	// "log"
-	// "os"
-	"path/filepath"
 	"flag"
-	// "github.com/k0kubun/pp"
-	// "gopkg.in/alecthomas/kingpin.v2"
+	"path/filepath"
 )
 
 type TagFieldKey struct {
@@ -19,15 +15,13 @@ type TagFieldKey struct {
 
 var (
 	InFileName string
-	database string
+	database   string
 )
 
-
-
 func init() {
-	flag.StringVar(&InFileName, "in", "*.csv", "File name of input csv")
 	flag.StringVar(&database, "d", "perf", "Name of database to use")
 	flag.Parse()
+	InFileName = flag.Arg(0)
 }
 
 func main() {

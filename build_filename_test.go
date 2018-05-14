@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestCreateOutFile(t *testing.T) {
+func TestBuildFilename(t *testing.T) {
 
 	cases := []struct {
 		infile string
@@ -18,7 +18,7 @@ func TestCreateOutFile(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		outfile, err := createOutFile(c.infile)
+		outfile, err := buildFilename(c.infile)
 
 		if err != nil {
 			if err.Error() != c.err.Error() {
